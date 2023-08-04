@@ -1,7 +1,7 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-//it's define coordinate of the spacecraft in spacearea
+// it's define coordinate of the spacecraft in spacearea
 struct coordinate
 {
     int x, y, z;
@@ -16,7 +16,7 @@ private:
     int flag;
 
 public:
-   //constructor for initializing facedirection and initial coordinate of the spacecraft
+    // constructor for initializing facedirection and initial coordinate of the spacecraft
     spacecraftcontrol()
     {
         facedirection = 'N';
@@ -25,32 +25,35 @@ public:
         spacecraft.z = 0;
         flag = 0;
     }
-    //it will  provide  current spacecraft coordinate
+    // it will  provide  current spacecraft coordinate
     coordinate getcoordinate()
     {
         return spacecraft;
     }
-    //it will set spacecraft coordinate
+    // it will set spacecraft coordinate
     void setcoordinate(coordinate &c)
     {
         spacecraft.x = c.x;
         spacecraft.y = c.y;
         spacecraft.z = c.z;
     }
-    //it will provide current facedirection of the spacecraft
+    // it will provide current facedirection of the spacecraft
     char getdirection()
     {
         return facedirection;
     }
-    //it will set facedirection of the spacecraft
+    // it will set facedirection of the spacecraft
     void setdirection(char &s)
     {
         facedirection = s;
     }
-    //it will print the current result of the spacecraft
+    // it will print the current result of the spacecraft
     void print()
     {
-        cout <<"X: "<< spacecraft.x << " | " << "Y: "<<spacecraft.y << "| " <<"Z: "<< spacecraft.z << "| " <<"FACE_DIRECTION: "<< facedirection << "\n";
+        cout << "X: " << spacecraft.x << " | "
+             << "Y: " << spacecraft.y << "| "
+             << "Z: " << spacecraft.z << "| "
+             << "FACE_DIRECTION: " << facedirection << "\n";
     }
     void spacecraftmovement(vector<char> &steps);
     void performactionnorth(char step);
@@ -104,7 +107,9 @@ void spacecraftcontrol::spacecraftmovement(vector<char> &steps)
         if (!flag)
         {
             print();
-        }else{
+        }
+        else
+        {
             break;
         }
     }
@@ -148,7 +153,6 @@ void spacecraftcontrol::performactionnorth(char step)
     }
 }
 
-
 /*when direction of the spacecraft is south that time according to input command it will perform operation and change its location like if input is forward then it will move one step ahead*/
 void spacecraftcontrol::performactionsouth(char step)
 {
@@ -186,7 +190,6 @@ void spacecraftcontrol::performactionsouth(char step)
         return;
     }
 }
-
 
 /*when direction of the spacecraft is east that time according to input command it will perform operation and change its location like if input is forward then it will move one step ahead*/
 void spacecraftcontrol::performactioneast(char step)
@@ -331,7 +334,9 @@ void spacecraftcontrol::performactiondownward(char step)
         default:
             break;
         }
-    }else{
+    }
+    else
+    {
         flag = 1;
         cout << "invalid input ,please try to give correct input i.e:- F,B,L,R,U,D"
              << "\n";
@@ -339,11 +344,36 @@ void spacecraftcontrol::performactiondownward(char step)
     }
 }
 
+
+
+void testfuntion(vector<char> &command)
+{
+    char output;
+   // cout<<"please enter your actualoutput:-"<<"\n";
+    cin>>output;
+    spacecraftcontrol s1;
+    s1.spacecraftmovement(command);
+    cout<<"\n";
+    if(output==s1.getdirection())
+    {
+        cout<<"Test is pass successfully:-"<<"\n";
+    }else{
+        cout<<"Test is fail !sorry:-"<<"\n";
+    }
+}
+
 int main()
 {
-    spacecraftcontrol s1;
-    vector<char> steps = {'F', 'R', 'U', 'B', 'L'};
-    s1.spacecraftmovement(steps);
+    int n;
+   // cout << "input your commad length"<< "\n";
+    cin >> n;
+    vector<char> command(n);
+    //cout << "input your command:-"<< "\n";
+    for (int i = 0; i < n; i++)
+    {
+        cin>>command[i];
+    }
 
+    testfuntion(command);
     // cout << s1.getdirection() << "\n";
 }
