@@ -1,12 +1,13 @@
 #include <bits/stdc++.h>
-
 using namespace std;
 
+//it's define coordinate of the spacecraft in spacearea
 struct coordinate
 {
     int x, y, z;
 };
 
+/*here ,i have created spacecraft control class for managing spacecraft movement.spacecraft receive command and according to command, it will perform operation. */
 class spacecraftcontrol
 {
 private:
@@ -15,6 +16,7 @@ private:
     int flag;
 
 public:
+   //constructor for initializing facedirection and initial coordinate of the spacecraft
     spacecraftcontrol()
     {
         facedirection = 'N';
@@ -23,24 +25,29 @@ public:
         spacecraft.z = 0;
         flag = 0;
     }
+    //it will  provide  current spacecraft coordinate
     coordinate getcoordinate()
     {
         return spacecraft;
     }
+    //it will set spacecraft coordinate
     void setcoordinate(coordinate &c)
     {
         spacecraft.x = c.x;
         spacecraft.y = c.y;
         spacecraft.z = c.z;
     }
+    //it will provide current facedirection of the spacecraft
     char getdirection()
     {
         return facedirection;
     }
+    //it will set facedirection of the spacecraft
     void setdirection(char &s)
     {
         facedirection = s;
     }
+    //it will print the current result of the spacecraft
     void print()
     {
         cout <<"X: "<< spacecraft.x << " | " << "Y: "<<spacecraft.y << "| " <<"Z: "<< spacecraft.z << "| " <<"FACE_DIRECTION: "<< facedirection << "\n";
@@ -54,6 +61,7 @@ public:
     void performactiondownward(char step);
 };
 
+/*it will check command ,whenever it is given by user ,it is correct or not */
 bool iscorrect(char ch)
 {
     if (ch == 'F' || ch == 'B' || ch == 'L' || ch == 'R' || ch == 'U' || ch == 'D')
@@ -63,6 +71,7 @@ bool iscorrect(char ch)
     return false;
 }
 
+/*it is main function for handling movement of spacecraft.according to input command and facedirection it will perform operation*/
 void spacecraftcontrol::spacecraftmovement(vector<char> &steps)
 {
     int stepslength = steps.size();
@@ -100,6 +109,8 @@ void spacecraftcontrol::spacecraftmovement(vector<char> &steps)
         }
     }
 }
+
+/*when direction of the spacecraft is north that time according to input command it will perform operation and change its location like if input is forward then it will move one step ahead*/
 void spacecraftcontrol::performactionnorth(char step)
 {
     if (iscorrect(step))
@@ -137,6 +148,8 @@ void spacecraftcontrol::performactionnorth(char step)
     }
 }
 
+
+/*when direction of the spacecraft is south that time according to input command it will perform operation and change its location like if input is forward then it will move one step ahead*/
 void spacecraftcontrol::performactionsouth(char step)
 {
     if (iscorrect(step))
@@ -174,6 +187,8 @@ void spacecraftcontrol::performactionsouth(char step)
     }
 }
 
+
+/*when direction of the spacecraft is east that time according to input command it will perform operation and change its location like if input is forward then it will move one step ahead*/
 void spacecraftcontrol::performactioneast(char step)
 {
     if (iscorrect(step))
@@ -211,6 +226,7 @@ void spacecraftcontrol::performactioneast(char step)
     }
 }
 
+/*when direction of the spacecraft is west that time according to input command it will perform operation and change its location like if input is forward then it will move one step ahead*/
 void spacecraftcontrol::performactionwest(char step)
 {
     if (iscorrect(step))
@@ -248,6 +264,7 @@ void spacecraftcontrol::performactionwest(char step)
     }
 }
 
+/*when direction of the spacecraft is upward that time according to input command it will perform operation and change its location like if input is forward then it will move one step ahead*/
 void spacecraftcontrol::performactionupward(char step)
 {
     if (iscorrect(step))
@@ -286,6 +303,7 @@ void spacecraftcontrol::performactionupward(char step)
     }
 }
 
+/*when direction of the spacecraft is downward that time according to input command it will perform operation and change its location like if input is forward then it will move one step ahead*/
 void spacecraftcontrol::performactiondownward(char step)
 {
     if (iscorrect(step))
